@@ -1,5 +1,6 @@
-# import socket;
-import socketserver;
+from base64 import encode
+import socket;
+#import socketserver;
 import traceback
 import sys
 
@@ -64,18 +65,21 @@ import sys
 ##############################
 
 import socket
-import sys 
+import sys
+
 
 def create_socket():
     try:
         global a
         a = [30, 40, 50, 60, 70, 80, 90, 100, 110]
+        global star
+        #star = ''
         global host
         global port 
         global s
         host = ""
-        port = 9999 # not use it
-        s = socket.socket()
+        port = 5050 # not use it
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     except socket.error as msg:
         print("socket error" + str(msg))
 #########################################
@@ -94,7 +98,7 @@ def bind_socket():
         global port 
         global s
         
-        print("Binding the port   " , str(port))
+        print("Binding the port   " , (port))
         s.bind((host,port))
         s.listen(5)
 
@@ -110,57 +114,39 @@ def socket_accept():
     conn, addr = s.accept() #(object of connection,list Ip to a port)
     print("connectin has been established  "+ " | IP | "+ addr[0]+" | port | "+str(addr[1]))
     send_command(conn) # here conn for conversation
-    conn.close()
+    #conn.close()
 #############################################
 
 # Send command to client/victim or friend
 
 def send_command(conn):
     while True:
-        # cmd = input()
-        # if cmd == 'quit':
-        #     conn.close()
-        #     s.close()
-        #     sys.exit() # to close command prompt
-        # if len(str.encode(cmd)) >0:
-            
-        #     conn.send(str.encode(cmd))
-        #     client_response = str(conn.recv(1024),"utf-8")
-        #     print(client_response,end="")
+        print("The number of packets sent is:" + str(len(a)))
+        conn.send(str.encode("The number of packets sent is:" + str(len(a) )))
+        #client_response = str(conn.recv(4096),"utf-8")
+        for i in a: 
+            y=(str(i)+ '\n')
+            y=y.encode()
+            conn.send(y)
 
-        dis =  (conn.input())
-        dos = str(conn.recv(6534))
-        print("The number of packets sent is:" + a.length)
-        y = a.length
-        dos.write(y)
-        dos.flush()
-
-        for i in range(10): 
-            dos.write(a[i])
-            dos.flush()
-        
-
-        k = dis.read()
-        dos.write(a[k])
-        dos.flush()
-
-        
-    # except socket.error as msg: {
-    #         print(msg)
-    #     } 
-    try: 
-        
+            # conn.send(str.encode(star))
+        client_response = str(conn.recv(4096),"utf-8")
+        cmd = input()
+        if cmd == 'quit':
+            conn.close()
             s.close()
+            sys.exit() # to close command prompt
+        if len(str.encode(cmd)) >0:
             
-        
-    except socket.error as msg: {
-            # todo Auto-generated catch block
-            traceback.print_exc()
-        }
+            conn.send(str.encode(cmd))
+            client_response = str(conn.recv(1024),"utf-8")
+            print(client_response,end="")
+
+
+    
 ###############################################
 
-def main():
+if __name__ == '__main__' :
     create_socket()
     bind_socket()
     socket_accept()
-main()
