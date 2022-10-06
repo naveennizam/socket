@@ -1,12 +1,12 @@
 
 import socket
+import time
 from colorama import Fore  , Style #pip install colorama
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 host = socket.gethostname() 
 port = 5050
 s.connect((host,port))
-
 
 
 data = s.recv(1024)
@@ -27,10 +27,16 @@ for j in range(len(res)):
              
     print("Received frame is: " , res[j])
     
-
 for j in range(len(res)):               
 
     if (res[j] == -1): 
+        send=("Request to retransmit packet no " , str((j+1)))
+        sender = str(send)
+        sender = sender.encode()
+        s.send(sender)
+        
+        time.sleep(4)
+        
         print("Request to retransmit packet no " , (j+1) , " again!!")
         print()    
         print(Fore.YELLOW,"Received frame is: " , pre)

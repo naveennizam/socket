@@ -5,7 +5,8 @@
 
 import socket
 import sys
-
+import time
+from colorama import Fore , Back , Style #pip install colorama
 def create_socket():
     try:
         global a
@@ -68,6 +69,12 @@ def send_command(conn):
             
             z=(z.encode())
         conn.send(bytearray(z))
+        time.sleep(2)
+        recieve = conn.recv(1024)
+        reciever=(recieve.decode())
+        print(Back.RED,reciever)
+        print(Style.RESET_ALL)
+        
 
         conn.close()
         sys.exit()
