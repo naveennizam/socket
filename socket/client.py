@@ -1,9 +1,9 @@
 
 import socket
-from colorama import Fore  , Style
+from colorama import Fore  , Style #pip install colorama
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-host = socket.gethostname()  # '192.168.3.105'
+host = socket.gethostname() 
 port = 5050
 s.connect((host,port))
 
