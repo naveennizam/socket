@@ -1,8 +1,10 @@
-# socket in Python
+# Socket in Python
 <img src = 'https://tse3.mm.bing.net/th?id=OIP.dVpjkNOQoBjANryFKbNQuwAAAA&pid=Api&P=0'> 
 
-### SOCKET
+## SOCKET
 Sockets act as bidirectional communications channel where they are endpoints of it.sockets may communicate within the process, between different process and also process on different places.
+- s = socket.socket((socket.AF_INET, socket.SOCK_STREAM))
+- socket.AF_INET(IP4) , socket.SOCK_STREAM (use TCP/IP)
 
 ## Server socket methods
 	
