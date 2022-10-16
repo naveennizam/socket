@@ -1,6 +1,22 @@
 # socket in Python
+<img src = 'https://tse3.mm.bing.net/th?id=OIP.dVpjkNOQoBjANryFKbNQuwAAAA&pid=Api&P=0'> 
 
-<!-- <img src='./socket/th(1).jpg'> -->
-<!-- <img src = 'https://tse3.mm.bing.net/th?id=OIP.dVpjkNOQoBjANryFKbNQuwAAAA&pid=Api&P=0'> -->
+### SOCKET
+Sockets act as bidirectional communications channel where they are endpoints of it.sockets may communicate within the process, between different process and also process on different places.
 
-<img src='https://www.it.uu.se/education/course/homepage/dsp/vt19/images/module-2/tcp-socket.png'>
+## Server socket methods
+	
+- s.bind – This method binds address hostname, port number to socket	
+- s.listen – This method setups and start TCP listener	
+- s.accept – This passively accepts client connection, waiting until connection arrives blocking
+
+## Client socket methods
+
+- s.connect – This method actively initiates TCP server connection
+
+## General socket methods 	
+Data must be in string  (encode and decode method use in it)
+- s.recv – This method receives TCP message	
+- s.send – This method transmits TCP message
+- s.close – This method closes socket	
+- s.gethostname – Returns a hostname
